@@ -1,9 +1,8 @@
 const game = document.querySelector('.game-field');
-let res = document.querySelector('.result');
+
 const resetButton = document.querySelector('.reset-button');
 const fields = document.querySelectorAll('.field');
-let step = false;
-let	counter = 0;
+
 const playerOne = {name: 'Первый Игрок', symbol: 'x'};
 const playerTwo = {name: 'Второй Игрок', symbol: 'o'};
 const cancelButton = document.querySelector('.cancel-turn');
@@ -51,6 +50,13 @@ const cross = `<svg id="cross" width="150px" height="150px" viewBox="0 0 15 15" 
 const crossClass = 'x';
 const circleClass = 'o';
 
+let res = document.querySelector('.result');
+
+let step = false;
+let counter = 0;
+
+let lastField = null;
+
 function drawCross(target) {
 		target.innerHTML = cross;
 		target.classList.add(crossClass);
@@ -63,7 +69,7 @@ function drawZero(target) {
 		counter++;
 }
 
-let buf = null;
+
 
 function makeMove(e) {
 
@@ -88,8 +94,8 @@ function cancelMove() {
 	cancelButton.setAttribute('disabled', '');
 	step = !step;
 	counter--;
-	buf.innerHTML = '';
-	buf.classList.remove('x', 'o');
+	lastField.innerHTML = '';
+	lastField.classList.remove('x', 'o');
 
 }
 
