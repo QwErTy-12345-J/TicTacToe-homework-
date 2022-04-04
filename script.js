@@ -132,7 +132,6 @@ function checkWinner() {
 			fields[winPositions[i][1]].classList.add('active');
 			fields[winPositions[i][2]].classList.add('active');
 
-			if (fields[winPositions[i][0]].classList.contains('active'))
 			game.removeEventListener('click', makeMove);
 			cancelButton.removeEventListener('click', cancelMove);
 			res.innerText = `Выиграл ${playerOne.name} ${playerOne.symbol}`;
