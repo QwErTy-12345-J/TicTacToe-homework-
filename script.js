@@ -1,12 +1,8 @@
 const game = document.querySelector('.game-field');
-
 const resetButton = document.querySelector('.reset-button');
 const fields = document.querySelectorAll('.field');
-
-
-const playerOne = {name: 'Первый Игрок', symbol: 'x'};
-const playerTwo = {name: 'Второй Игрок', symbol: 'o'};
 const cancelButton = document.querySelector('.cancel-turn');
+let res = document.querySelector('.result');
 
 const circle = `<svg id="circle" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150px" height="150px" viewBox="0 0 32 32">
                 <g>
@@ -52,10 +48,12 @@ const cross = `<svg id="cross" width="150px" height="150px" viewBox="0 0 15 15" 
 const crossClass = 'x';
 const circleClass = 'o';
 
-let res = document.querySelector('.result');
+const playerOne = {name: 'Первый Игрок', symbol: 'x'};
+const playerTwo = {name: 'Второй Игрок', symbol: 'o'};
+
 let step = false;
 let	counter = 0;
-let lastField = null;
+let currentField = null;
 
 function drawCross(target) {
 		target.innerHTML = cross;
@@ -75,7 +73,7 @@ function makeMove(e) {
 
 	if (e.target.innerHTML || !e.target.classList.contains('field') ) return;
 
-	lastField = e.target;
+	currentField = e.target;
 	cancelButton.removeAttribute('disabled');
 
 	if (!step) {
@@ -94,8 +92,8 @@ function cancelMove() {
 	cancelButton.setAttribute('disabled', '');
 	step = !step;
 	counter--;
-	lastField.innerHTML = '';
-	lastField.classList.remove('x', 'o');
+	currentField.innerHTML = '';
+	currentField.classList.remove('x', 'o');
 
 }
 
